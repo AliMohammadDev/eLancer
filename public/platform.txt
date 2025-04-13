@@ -1,0 +1,13 @@
+eLancer platform
+
+-users
+    *FreeLancers
+    *vendors || clients
+    *Admin
+
+-projects
+-tags
+
+-categories
+
+-offers
