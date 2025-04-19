@@ -21,6 +21,7 @@ return new class extends Migration
                 ->nullable()
                 ->constrained('categories')
                 ->nullOnDelete();
+                $table->string('title');
             $table->text('description');
             $table->enum('status', ['open', 'in-progress', 'closed']);
             $table->enum('type', ['hourly', 'fixed']);

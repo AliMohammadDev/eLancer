@@ -8,6 +8,7 @@ class ProjectRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
+
      */
     public function authorize(): bool
     {
@@ -25,7 +26,9 @@ class ProjectRequest extends FormRequest
             'title' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string'],
             'type' => ['required', 'in:hourly,fixed'],
-            'budget' => ['nullable', 'numeric', 'min:0']
+            'budget' => ['nullable', 'numeric', 'min:0'],
+            'category_id' => ['required', 'exists:categories,id'],
+
         ];
     }
 
