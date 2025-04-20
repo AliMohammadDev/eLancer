@@ -20,7 +20,8 @@ class Project extends Model
     'description',
     'budget',
     'status',
-    'type'
+    'type',
+    'attachments'
   ];
 
   public function user()
@@ -69,4 +70,9 @@ class Project extends Model
     // $project->tags()->sync($tags_id);
     $this->tags()->sync($tags_id);
   }
+
+  protected $casts = [
+    'budget' => 'float',
+    'attachments' => 'json'
+  ];
 }
