@@ -45,7 +45,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group([
     'prefix' => '/dashboard',
-    'middleware'=>['auth']
+    'middleware'=>['auth:admin']
 ], function () {
     Route::resource('/categories', CategoriesController::class);
 });

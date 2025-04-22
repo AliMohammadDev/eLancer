@@ -15,51 +15,65 @@ use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
 {
-    /**
-     * Display the login view.
-     */
-    public function create(): View
-    {
-        return view('auth.login');
+  protected $guard = 'web';
+
+  public  function __construct(Request $request)
+  {
+
+    if ($request->is('admin/*')) {
+      $this->guard = 'admin';
     }
+  }
+  /**
+   * Display the login view.
+   */
+  public function create(): View
+  {
+    return view('auth.login', [
+      'routePrefix' => $this->guard == 'admin' ? 'admin' : ''
+    ]);
+  }
 
-    /**
-     * Handle an incoming authentication request.
-     */
-    public function store(LoginRequest $request): RedirectResponse
-    {
+  /**
+   * Handle an incoming authentication request.
+   */
+  public function store(LoginRequest $request): RedirectResponse
+  {
 
-        // Auth::attempt([
-        //     'email'=>$request->email,
-        //     'password'=>$request->password
-        // ]);
+    // Auth::attempt([
+    //     'email'=>$request->email,
+    //     'password'=>$request->password
+    // ]);
 
-        // $user = User::where('email',$request->post('email'))->first();
-        // if(!$user || !Hash::check($request->post('password',$user->password))){
-        //     throw ValidationException::withMessage([
-        //         'email'=>'Invalid Credentials'
-        //     ]);
-        // }
-        // Auth::login($user);
+    // $user = User::where('email',$request->post('email'))->first();
+    // if(!$user || !Hash::check($request->post('password',$user->password))){
+    //     throw ValidationException::withMessage([
+    //         'email'=>'Invalid Credentials'
+    //     ]);
+    // }
+    // Auth::login($user);
 
-        $request->authenticate();
+    $request->authenticate($this->guard);
 
-        $request->session()->regenerate();
+    $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
-    }
+    return redirect()->intended(
+      $this->guard == 'admin' ? 'dashboard/categories' :
+        RouteServiceProvider::HOME
+    );
+  }
 
-    /**
-     * Destroy an authenticated session.
-     */
-    public function destroy(Request $request): RedirectResponse
-    {
-        Auth::guard('web')->logout();
+  /**
+   * Destroy an authenticated session.
+   */
+  public function destroy(Request $request): RedirectResponse
+  {
+    Auth::guard($this->guard)->logout();
 
-        $request->session()->invalidate();
+    $request->session()->invalidate();
 
-        $request->session()->regenerateToken();
+    $request->session()->regenerateToken();
 
-        return redirect('/');
-    }
+    return redirect('/');
+  }
 }
