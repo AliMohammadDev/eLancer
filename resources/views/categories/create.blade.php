@@ -13,7 +13,7 @@
             </div>
         @endif
 
-        <form action="{{ route('categories.store') }}" method="post">
+        <form action="{{ route('categories.store') }}" method="post" enctype="multipart/form-data">
             @csrf
 
             @include('categories._form')

@@ -1,7 +1,7 @@
 <x-front-layout title="Home Page">
     <!-- Intro Banner
 ================================================== -->
-    <div class="intro-banner dark-overlay" data-background-image="images/home-background-02.jpg">
+    <div class="intro-banner dark-overlay" data-background-image="images/free-lancer-image.jpg">
 
         <!-- Transparent Header Spacer -->
         <div class="transparent-header-spacer"></div>
@@ -104,17 +104,22 @@
                     </div>
                 </div>
 
+                @foreach ($categories as $category)
                 <div class="col-xl-3 col-md-6">
-                    <!-- Photo Box -->
-                    <a href="jobs-list-layout-1.html" class="photo-box small" data-background-image="images/job-category-01.jpg">
-                        <div class="photo-box-content">
-                            <h3>Web / Software Dev</h3>
-                            <span>612</span>
-                        </div>
-                    </a>
-                </div>
+                  <!-- Photo Box -->
+                  <a href="#" class="photo-box small" data-background-image="uploads/{{ $category->art_file }}">
+                      <div class="photo-box-content">
+                          {{-- <h3>Web / Software Dev</h3> --}}
+                          <h3>{{ $category->name }}</h3>
+                          <span>612</span>
+                      </div>
+                  </a>
+              </div>
+                @endforeach
 
-                <div class="col-xl-3 col-md-6">
+               
+
+                {{-- <div class="col-xl-3 col-md-6">
                     <!-- Photo Box -->
                     <a href="jobs-list-layout-full-page-map.html" class="photo-box small" data-background-image="images/job-category-02.jpg">
                         <div class="photo-box-content">
@@ -122,9 +127,9 @@
                             <span>113</span>
                         </div>
                     </a>
-                </div>
+                </div> --}}
 
-                <div class="col-xl-3 col-md-6">
+                {{-- <div class="col-xl-3 col-md-6">
                     <!-- Photo Box -->
                     <a href="jobs-grid-layout-full-page.html" class="photo-box small" data-background-image="images/job-category-03.jpg">
                         <div class="photo-box-content">
@@ -182,7 +187,7 @@
                             <span>445</span>
                         </div>
                     </a>
-                </div>
+                </div> --}}
 
             </div>
         </div>

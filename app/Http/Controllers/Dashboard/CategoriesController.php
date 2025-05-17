@@ -17,11 +17,12 @@ class CategoriesController extends Controller
         'name' => ['required', 'string', 'between:2,255'],
         'parent_id' => ['nullable', 'int', 'exists:categories,id'],
         'description' => ['nullable', 'string'],
-        'art_file' => ['nullable', 'image']
+        'art_file' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg,webp']
     ];
     protected  $message = [
-        'image' => 'the :attribute must be and image type.',
-        'name.required' => 'the :attribute is required.',
+      'art_file.image' => 'The :attribute must be an image type.',
+      'art_file.mimes' => 'The :attribute must be a file of type: jpeg, png, jpg, gif, svg, webp.',
+      'name.required' => 'The :attribute is required.',
         // 'description.required'=>'the :attribute is required.'
     ];
 
@@ -35,9 +36,9 @@ class CategoriesController extends Controller
             'parents.id',
             '=',
             'categories.parent_id'
-        )->select('categories.*', 'parents.name as parent_name')
+)->select('categories.*', 'parents.name as parent_name')
             // ->simplePaginate('3');
-            ->paginate('3','*','page');
+            ->paginate('5','*','page');
         return view('categories.index', [
             'categories' => $categories,
             'title' => 'categories',
@@ -55,7 +56,7 @@ class CategoriesController extends Controller
             'category' => $category,
             'title' => 'categories'
         ]);
-    }
+    }        
 
     public function create()
     {
@@ -80,7 +81,9 @@ class CategoriesController extends Controller
         // $category->slug = Str::slug($category->name);
         // $category->save();
 
-        $data = $request->all();
+        $data = $request->except('art_file');
+        $data['art_file'] = $this->uploadAttachments($request);
+
         if (!$data['slug']) {
             $data['slug'] = Str::slug($data['name']);
         }
@@ -90,8 +93,7 @@ class CategoriesController extends Controller
 
 
         //PRG Post Redirect Get
-        return redirect()
-            ->route('categories.index')
+        return redirect('dashboard/categories')
             ->with('Success', 'Category Created');
     }
     public function edit(Category $category)
@@ -117,8 +119,8 @@ class CategoriesController extends Controller
 
         $category->update($request->all());
 
-        return redirect('/categories')
-            ->name('categories.index')
+        return redirect('dashboard/categories')
+        
             ->with('Warning', 'Category Updated');
     }
 
@@ -131,7 +133,7 @@ class CategoriesController extends Controller
         // session()->flash('Success', 'Category Deleted');
         Session::flash('Success', 'Category Deleted');
         // Session::put('Success', 'Category Deleted');
-        return redirect()->name('categories.index');
+        return redirect('dashboard/categories');
         // ->with('Success', 'Category Deleted');
     }
 
@@ -146,4 +148,20 @@ class CategoriesController extends Controller
         $rules['name'][] = new filterRule;
         return $rules;
     }
+
+    protected function uploadAttachments(Request $request)
+    {
+      if (!$request->hasFile('art_file')) {
+        return;
+      }
+      $file = $request->file('art_file');
+        if ($file->isValid()) {
+          $path = $file->store('/art_file', [
+            'disk' => 'uploads',
+          ]);
+          return $path;
+        }
+    }
+
+
 }

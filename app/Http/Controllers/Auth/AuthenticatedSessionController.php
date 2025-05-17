@@ -19,7 +19,6 @@ class AuthenticatedSessionController extends Controller
 
   public  function __construct(Request $request)
   {
-
     if ($request->is('admin/*')) {
       $this->guard = 'admin';
     }
@@ -32,6 +31,7 @@ class AuthenticatedSessionController extends Controller
     return view('auth.login', [
       'routePrefix' => $this->guard == 'admin' ? 'admin' : ''
     ]);
+    
   }
 
   /**

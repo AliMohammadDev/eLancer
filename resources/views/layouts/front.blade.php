@@ -38,8 +38,10 @@
 
                         <!-- Logo -->
                         <div id="logo">
-                            <a href="index.html"><img src="{{ asset('assets/front/images/logo.png') }}"
-                                    alt=""></a>
+                            <a href="/">
+                                <img src="{{ asset('images/logo-freelancer.png') }}" style="width: 90px; height: 60px;"
+                                    alt="">
+                            </a>
                         </div>
 
                         <!-- Main Navigation -->
@@ -47,10 +49,8 @@
                             <ul id="responsive">
 
                                 <li><a href="/">{{ __('Home') }}</a>
-                                    <ul class="dropdown-nav">
-                                        <li><a href="index.html">Home 1</a></li>
-                                        <li><a href="index-2.html">Home 2</a></li>
-                                        <li><a href="index-3.html">Home 3</a></li>
+                                    <ul class="dropdown-nav font-semibold">
+                                        <li><a href="/">Home</a></li>
                                     </ul>
                                 </li>
 
@@ -102,16 +102,17 @@
 
                                 <li><a href="#">Dashboard</a>
                                     <ul class="dropdown-nav">
-                                        <li><a href="dashboard.html">Dashboard</a></li>
-                                        <li><a href="dashboard-messages.html">Messages</a></li>
-                                        <li><a href="dashboard-bookmarks.html">Bookmarks</a></li>
-                                        <li><a href="dashboard-reviews.html">Reviews</a></li>
-                                        <li><a href="dashboard-manage-jobs.html">Jobs</a>
+                                        <li><a href="{{ route('client.projects.index') }}">Dashboard</a></li>
+                                        <li><a href="{{ route('client.projects.index') }}">Messages</a></li>
+                                        <li><a href="{{ route('client.projects.index') }}">Bookmarks</a></li>
+                                        <li><a href="{{ route('client.projects.index') }}">Reviews</a></li>
+                                        <li><a href="{{ route('client.projects.index') }}">Jobs</a>
                                             <ul class="dropdown-nav">
-                                                <li><a href="dashboard-manage-jobs.html">Manage Jobs</a></li>
-                                                <li><a href="dashboard-manage-candidates.html">Manage Candidates</a>
+                                                <li><a href="{{ route('client.projects.index') }}">Manage Jobs</a></li>
+                                                <li><a href="{{ route('client.projects.index') }}">Manage
+                                                        Candidates</a>
                                                 </li>
-                                                <li><a href="dashboard-post-a-job.html">Post a Job</a></li>
+                                                <li><a href="{{ route('client.projects.create') }}">Post a Job</a></li>
                                             </ul>
                                         </li>
                                         <li><a href="dashboard-manage-tasks.html">Tasks</a>
@@ -126,7 +127,7 @@
                                     </ul>
                                 </li>
 
-                                <li><a href="#" class="current">Pages</a>
+                                {{-- <li><a href="#" class="current">Pages</a>
                                     <ul class="dropdown-nav">
                                         <li><a href="pages-blog.html">Blog</a></li>
                                         <li><a href="pages-pricing-plans.html">Pricing Plans</a></li>
@@ -139,7 +140,7 @@
                                         <li><a href="pages-404.html">404 Page</a></li>
                                         <li><a href="pages-contact.html">Contact</a></li>
                                     </ul>
-                                </li>
+                                </li> --}}
 
                                 <li>
                                     <a href="#" class="current">{{ __('Language') }}</a>
@@ -184,7 +185,7 @@
                                     </a>
                                 </div>
 
-                                <!-- Dropdown -->
+                                <!-- Dropdown if users login -->
                                 @auth
                                     <div class="header-notifications-dropdown">
 
@@ -211,9 +212,9 @@
                                         </div>
 
                                         <ul class="user-menu-small-nav">
-                                            <li><a href="dashboard.html"><i class="icon-material-outline-dashboard"></i>
+                                            <li><a href="dashboard"><i class="icon-material-outline-dashboard"></i>
                                                     Dashboard</a></li>
-                                            <li><a href="dashboard-settings.html"><i
+                                            <li><a href="{{ route('freelancer.profile.edit') }}"><i
                                                         class="icon-material-outline-settings"></i> Settings</a></li>
                                             <li><a href="{{ route('logout') }}"
                                                     onclick="event.preventDefault(); document.getElementById('logout').submit();"><i
@@ -224,7 +225,6 @@
                                             id="logout">
                                             @csrf
                                         </form>
-
                                     </div>
                                 @endauth
                             </div>
@@ -252,7 +252,7 @@
         <div class="clearfix"></div>
         <!-- Header Container / End -->
 
-       {{ $slot }}
+        {{ $slot }}
 
         <!-- Footer
 ================================================== -->

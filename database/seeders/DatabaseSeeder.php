@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
   {
 
     //call admin factory
-    Admin::factory(3)->create();
+    // Admin::factory(3)->create();
     // \App\Models\User::factory(10)->create();
 
     // \App\Models\User::factory()->create([
@@ -24,9 +24,10 @@ class DatabaseSeeder extends Seeder
     //     'email' => 'test@example.com',
     // ]);
 
-    //call admin seeder
-    // $this->call([
-    //   AdminsTableSeeder::class
-    // ]);
+    // call admin seeder
+    $this->call([
+      AdminsTableSeeder::class,
+      CategorySeeder::class,
+    ]);
   }
 }

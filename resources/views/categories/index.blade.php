@@ -23,6 +23,7 @@
                <th scope="col">Name</th>
                <th scope="col">Slug</th>
                <th scope="col">Parent ID</th>
+               <th scope="col">Art File</th>
                <th scope="col">Created At</th>
 
            </tr>
@@ -36,6 +37,9 @@
                    <td><a href="{{ route('categories.show', $category->id) }}">{{ $category->name }}</a></td>
                    <td> {{ $category->slug }}</td>
                    <td> {{ $category->parent_name }}</td>
+                   <td>
+                       <img style="width: 70px; height:60px;" src="{{ asset('uploads/'.$category->art_file) }}" alt="">
+                   </td>
                    <td> {{ $category->created_at }}</td>
                    <td><a href="{{ route('categories.edit', $category->id) }}" class="btn btn-sm btn-dark">Edit</a></td>
                    <td>
