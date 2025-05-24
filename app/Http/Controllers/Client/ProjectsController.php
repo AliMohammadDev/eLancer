@@ -50,20 +50,7 @@ class ProjectsController extends Controller
    */
   public function store(ProjectRequest $request)
   {
-
-    // $request->validate([
-    //     'title'=>['required','string','max:255'],
-    //     'description'=>['required','string'],
-    //     'type'=>['required','in:hourly,fixed'],
-    //     'budget'=>['nullable','numeric','min:0']
-    // ]);
     $user = Auth::user();
-    // $user = $request->user()->id;
-    // $request->merge([
-    //     'user_id'=>$user
-    // ]);
-    // $project = Project::create($request->all());
-
     $data = $request->except('attachments');
     $data['attachments'] = $this->uploadAttachments($request);
 
@@ -117,18 +104,6 @@ class ProjectsController extends Controller
     $project->update($data);
 
     $tags = explode(',', $request->input('tags'));
-
-
-    // $tags_id = [];
-    // foreach ($tags as $tag_name) {
-    //   $tag = Tag::firstOrCreate([
-    //     'slug' => Str::slug($tag_name),
-    //   ], [
-    //     'name' => trim($tag_name)
-    //   ]);
-    //   $tags_id[] = $tag->id;
-    // }
-    // $project->tags()->sync($tags_id);
 
     $project->syncTags($tags);
 
