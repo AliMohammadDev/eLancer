@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,14 +27,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-  $categories = Category::all();
-  return view('home',[
-    'categories' => $categories
-  ]);
+    $categories = Category::all();
+
+    return view('home', [
+        'categories' => $categories,
+    ]);
 });
 
 Route::get('/dashboard', function () {
-  return view('dashboard');
+    return view('dashboard');
 })->middleware(['auth:admin,web'])->name('dashboard');
 
 // Route::middleware('auth')->group(function (): void {
@@ -44,15 +44,14 @@ Route::get('/dashboard', function () {
 //   Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 // });
 
-
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';
 
 Route::group([
-  'prefix' => 'admin',
-  'as' => 'admin'
+    'prefix' => 'admin',
+    'as' => 'admin',
 ], function () {
-  require __DIR__ . '/auth.php';
+    require __DIR__.'/auth.php';
 });
-require __DIR__ . '/dashboard.php';
-require __DIR__ . '/freelancer.php';
-require __DIR__ . '/client.php';
+require __DIR__.'/dashboard.php';
+require __DIR__.'/freelancer.php';
+require __DIR__.'/client.php';

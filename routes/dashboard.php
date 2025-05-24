@@ -23,7 +23,6 @@ use Illuminate\Support\Facades\Route;
 //         ->name('destroy');
 // });
 
-
 // `Route::prefix('/dashboard')
 //     ->as('categories.')
 //     ->group(function () {
@@ -45,7 +44,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group([
     'prefix' => '/dashboard',
-    'middleware'=>['auth:admin']
+    'middleware' => ['auth:admin'],
 ], function () {
     Route::resource('/categories', CategoriesController::class);
 });

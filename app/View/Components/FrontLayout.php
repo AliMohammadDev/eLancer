@@ -9,6 +9,7 @@ use Illuminate\View\Component;
 class FrontLayout extends Component
 {
     public $title;
+
     /**
      * Create a new component instance.
      */
@@ -22,8 +23,8 @@ class FrontLayout extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('layouts.front',[
-            'title'=>$this->title
+        return view('layouts.front', [
+            'title' => $this->title,
         ]);
     }
 }

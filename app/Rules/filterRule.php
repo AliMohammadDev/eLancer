@@ -14,7 +14,7 @@ class filterRule implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if($value == 'god'){
+        if ($value == 'god') {
             $fail('this :attribute is not allowed');
         }
     }

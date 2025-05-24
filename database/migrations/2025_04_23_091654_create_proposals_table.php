@@ -10,7 +10,7 @@ return new class extends Migration
      * Run the migrations.
      */
 
-     //may to many like pivot table with freelancer and project
+    // may to many like pivot table with freelancer and project
     public function up(): void
     {
         Schema::create('proposals', function (Blueprint $table) {

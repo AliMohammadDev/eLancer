@@ -19,12 +19,12 @@ class AdminFactory extends Factory
     public function definition(): array
     {
         return [
-            'name'=>$this->faker->name(),
-            'email'=>$this->faker->safeEmail,
-            'password'=>Hash::make('admin00000'),
+            'name' => $this->faker->name(),
+            'email' => $this->faker->safeEmail,
+            'password' => Hash::make('admin00000'),
             // 'super_admin'=>,
             // 'status'=>,
-            'remember_token'=>Str::random(16)
+            'remember_token' => Str::random(16),
         ];
     }
 }

@@ -11,7 +11,9 @@ use Symfony\Component\Intl\Countries;
 class CountrySelect extends Component
 {
     public $selected;
+
     public $countries;
+
     /**
      * Create a new component instance.
      */

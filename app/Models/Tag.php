@@ -7,20 +7,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
 {
-  use HasFactory;
+    use HasFactory;
 
-  public $timestamps = false;
-  protected $fillable = ['name', 'slug'];
+    public $timestamps = false;
 
-  public function projects()
-  {
-    return $this->belongsToMany(
-      Project::class,
-      'project_tag',
-      'tag_id',
-      'project_id',
-      'id',
-      'id'
-    );
-  }
+    protected $fillable = ['name', 'slug'];
+
+    public function projects()
+    {
+        return $this->belongsToMany(
+            Project::class,
+            'project_tag',
+            'tag_id',
+            'project_id',
+            'id',
+            'id'
+        );
+    }
 }

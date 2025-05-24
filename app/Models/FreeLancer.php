@@ -7,26 +7,29 @@ use Illuminate\Database\Eloquent\Model;
 
 class FreeLancer extends Model
 {
-  use HasFactory;
-  protected $primaryKey = 'user_id';
-  protected $fillable = [
-    'first_name',
-    'last_name',
-    'description',
-    'gender',
-    'birthday',
-    'title',
-    'hourly_rate',
-    'country',
-    'profile_photo_path',
-  ];
+    use HasFactory;
 
-  public function user()
-  {
-    return  $this->belongsTo(User::class, 'user_id', 'id')
-      ->withDefault();
-  }
-  protected $casts = [
-    'birthday' => 'datetime'
-  ];
+    protected $primaryKey = 'user_id';
+
+    protected $fillable = [
+        'first_name',
+        'last_name',
+        'description',
+        'gender',
+        'birthday',
+        'title',
+        'hourly_rate',
+        'country',
+        'profile_photo_path',
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id')
+            ->withDefault();
+    }
+
+    protected $casts = [
+        'birthday' => 'datetime',
+    ];
 }

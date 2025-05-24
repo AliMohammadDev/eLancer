@@ -7,7 +7,6 @@ use Illuminate\View\Component;
 
 class NotificationMenu extends Component
 {
-
     public $notifications;
 
     public $new;

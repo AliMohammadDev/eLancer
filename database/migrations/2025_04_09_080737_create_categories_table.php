@@ -29,8 +29,8 @@ return new class extends Migration
             // ->strictOnDelete()
             // ->nullOnDelete()
 
-            //create_at
-            //updated_at
+            // create_at
+            // updated_at
             $table->timestamps();
         });
     }

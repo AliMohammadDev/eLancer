@@ -8,18 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'name',
         'parent_id',
         'description',
         'art_file',
-        'slug'
+        'slug',
     ];
+
     public function projects()
     {
         return $this->hasMany(Project::class, 'category_id', 'id');
     }
-    public function  children()
+
+    public function children()
     {
         return $this->hasMany(Category::class, 'parent_id', 'id');
     }
@@ -27,8 +30,8 @@ class Category extends Model
     public function parent()
     {
         return $this->belongsTo(Category::class, 'parent_id', 'id')
-        ->withDefault([
-            'name'=>'No Parent'
-        ]);
+            ->withDefault([
+                'name' => 'No Parent',
+            ]);
     }
 }

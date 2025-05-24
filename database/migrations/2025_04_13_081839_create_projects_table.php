@@ -17,11 +17,11 @@ return new class extends Migration
                 ->nullable()
                 ->constrained('users')
                 ->nullOnDelete();
-                $table->foreignId('category_id')
+            $table->foreignId('category_id')
                 ->nullable()
                 ->constrained('categories')
                 ->nullOnDelete();
-                $table->string('title');
+            $table->string('title');
             $table->text('description');
             $table->enum('status', ['open', 'in-progress', 'closed']);
             $table->enum('type', ['hourly', 'fixed']);

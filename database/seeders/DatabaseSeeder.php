@@ -9,25 +9,25 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-  /**
-   * Seed the application's database.
-   */
-  public function run(): void
-  {
+    /**
+     * Seed the application's database.
+     */
+    public function run(): void
+    {
 
-    //call admin factory
-    // Admin::factory(3)->create();
-    // \App\Models\User::factory(10)->create();
+        // call admin factory
+        // Admin::factory(3)->create();
+        // \App\Models\User::factory(10)->create();
 
-    // \App\Models\User::factory()->create([
-    //     'name' => 'Test User',
-    //     'email' => 'test@example.com',
-    // ]);
+        // \App\Models\User::factory()->create([
+        //     'name' => 'Test User',
+        //     'email' => 'test@example.com',
+        // ]);
 
-    // call admin seeder
-    $this->call([
-      AdminsTableSeeder::class,
-      CategorySeeder::class,
-    ]);
-  }
+        // call admin seeder
+        $this->call([
+            AdminsTableSeeder::class,
+            CategorySeeder::class,
+        ]);
+    }
 }
